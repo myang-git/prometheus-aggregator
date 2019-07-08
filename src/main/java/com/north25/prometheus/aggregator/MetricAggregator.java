@@ -21,7 +21,7 @@ public class MetricAggregator {
 		this.metricMap = new HashMap<String, MutableMetricGroup>();
 	}
 	
-	private class MetricGroupIterator implements Iterator<MetricGroup> {
+	private class MetricGroupIterator implements Iterator<MutableMetricGroup> {
 		
 		private final Iterator<Map.Entry<String, MutableMetricGroup>> delegate;
 		
@@ -46,16 +46,16 @@ public class MetricAggregator {
 			return this.delegate.hasNext();
 		}
 
-		public MetricGroup next() {
+		public MutableMetricGroup next() {
 			return this.delegate.next().getValue();
 		}		
 	}
 	
-	public Iterator<MetricGroup> sortedIterator() {
+	public Iterator<MutableMetricGroup> sortedIterator() {
 		return new MetricGroupIterator(true);
 	}
 	
-	public Iterator<MetricGroup> iterator() {
+	public Iterator<MutableMetricGroup> iterator() {
 		return new MetricGroupIterator(false);
 	}
 	
