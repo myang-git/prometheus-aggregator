@@ -74,6 +74,10 @@ public class TextFormatParser {
 				this.metricGroupBuilder.addSample((SampleElement)element);
 				continue;
 			}
+
+			if (element == null) {
+				throw new ParseException(line, 0);
+			}
 		}
 		return metricGroup;
 	}
