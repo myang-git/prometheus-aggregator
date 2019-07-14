@@ -1,7 +1,10 @@
 package com.north25.prometheus;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+
+import com.north25.prometheus.aggregator.MutableSampleFilter;
 
 public class MutableMetricGroup extends MetricGroup {
 	
@@ -15,7 +18,7 @@ public class MutableMetricGroup extends MetricGroup {
 	}
 	
 	public MutableMetricGroup(MetricGroup metricGroup) {
-		super(metricGroup.metricName, metricGroup.metricType, metricGroup.typeComment, metricGroup.helpComment);
+		this(metricGroup.metricName, metricGroup.metricType, metricGroup.typeComment, metricGroup.helpComment);
 		if (metricGroup.samples != null) {
 			for (SampleElement sample : metricGroup.samples) {
 				MutableSampleElement mutableSample = new MutableSampleElement(sample);
@@ -49,4 +52,17 @@ public class MutableMetricGroup extends MetricGroup {
 	public long getLastUpdateTime() {
 		return this.lastUpdateTime;
 	}
+	
+	public int purgeSamples(MutableSampleFilter filter) {
+		Iterator<SampleElement> iter = this.samples.iterator();
+		int removedSampleCount = 0;
+		while (iter.hasNext()) {
+			MutableSampleElement sample = (MutableSampleElement)iter.next();
+			if (filter.accept(sample)) {
+				iter.remove();
+				removedSampleCount += 1;
+			}
+		}
+		return removedSampleCount;
+}
 }
