@@ -1,5 +1,3 @@
-http_request_duration_seconds_bucket{le="0.05"} 24054
-
 # Escaping in label values:
 msdos_file_access_time_seconds{path="C:\\DIR\\FILE.TXT",error="Cannot find file:\n\"FILE.TXT\""} 1.458255915e9
 

@@ -2,6 +2,7 @@ package com.north25.prometheus;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public class MetricGroup {
@@ -157,6 +158,10 @@ public class MetricGroup {
 	
 	public List<SampleElement> getSamples() {
 		return Collections.unmodifiableList(this.samples);
+	}
+	
+	public Iterator<SampleElement> getSampleIterator() {
+		return new ImmutableIterator<SampleElement>(samples.iterator());
 	}
 	
 	public String toString() {
