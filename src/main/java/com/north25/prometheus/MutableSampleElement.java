@@ -12,6 +12,8 @@ public class MutableSampleElement extends SampleElement {
 
 	public MutableSampleElement(SampleElement sample) {
 		super(sample.metricName, sample.metricType, sample.subcategory, sample.labels);
+		this.value = sample.value;
+		this.timestamp = sample.timestamp;
 		this.reportTimestamp = System.currentTimeMillis();
 	}
 	
