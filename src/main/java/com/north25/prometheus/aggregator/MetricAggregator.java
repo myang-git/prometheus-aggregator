@@ -82,5 +82,18 @@ public class MetricAggregator {
 			}
 		}
 	}
+	
+	public int purgeSamples(MutableSampleFilter filter) {
+		Iterator<MutableMetricGroup> iter = this.metricMap.values().iterator();
+		int purgedSampleCount = 0;
+		while (iter.hasNext()) {
+			MutableMetricGroup metricGroup = iter.next();
+			purgedSampleCount += metricGroup.purgeSamples(filter);
+			if (metricGroup.getSamples().size() == 0) {
+				iter.remove();
+			}
+		}
+		return purgedSampleCount;
+	}
 
 }
