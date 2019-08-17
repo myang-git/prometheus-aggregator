@@ -12,6 +12,6 @@ The motivation of having an aggregator is to solve the problem where the source 
 The `MetricAggregator` class is to group the metrics by the signature, which is composed of the name and labels. It handles adding, updating, and removing metrics.
 The `MetricAggregatorServlet` handles the following HTTP methods:
 
-* GET: List current metrics.
-* POST: Upload metrics.
+* GET: List current metrics in Prometheus's text exposition format.
+* POST: Upload metrics in Prometheus's text exposition format.
 * DELETE: Remove all metrics or metrics older than specified age.
