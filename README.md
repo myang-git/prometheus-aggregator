@@ -7,10 +7,10 @@ The parser is able to progressively handle metrics exported in the format specif
 
 ## Metric Aggregator and Gateway
 
-The motivation of having an aggregator is to solve the problem where the entities that subject to monitoring are not reachable, or are intentially hidden from the Prometheus server. Monitoring of web application, IoT devices, and desktop applications are good example. In this case a gateway that is reachable from both the subject entities and the Prometheus server can capture and aggregate the metrics and make them available to Prometheus.
+The motivation of having an aggregator is to solve the problem where the source of metrics is not reachable, or is intentially hidden from the Prometheus server. Monitoring of web frontend, IoT device, and desktop application are a good example. In this case we need a gateway that is reachable from the Prometheus server to receive and aggregate the metrics from subject entities.
 
-The MetricAggregator class is to group the metrics by the signature, which is composed of the name and labels. It handles adding, updating, and removing metrics.
-The MetricAggregatorServlet provides the following API endpoints:
+The `MetricAggregator` class is to group the metrics by the signature, which is composed of the name and labels. It handles adding, updating, and removing metrics.
+The `MetricAggregatorServlet` handles the following HTTP methods:
 
 * GET: List current metrics.
 * POST: Upload metrics.
